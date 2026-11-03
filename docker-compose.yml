@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: businessmind
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in your .env file}
+      POSTGRES_DB: businessmind
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U businessmind -d businessmind"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      ENV: production
+      DATABASE_URL: postgresql+psycopg2://businessmind:${DB_PASSWORD}@db:5432/businessmind
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in your .env file (openssl rand -hex 32)}
+      STORAGE_DIR: /srv/storage
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8000}
+      OLLAMA_URL: ${OLLAMA_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.1}
+      OLLAMA_ENABLED: ${OLLAMA_ENABLED:-true}
+      OLLAMA_ALLOW_REMOTE: ${OLLAMA_ALLOW_REMOTE:-false}
+    volumes:
+      - appstorage:/srv/storage
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Optional: run Ollama itself in Docker (requires decent CPU/RAM).
+  #   docker compose --profile ollama up -d
+  #   docker exec businessmind-ollama-1 ollama pull llama3.1
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["ollama"]
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  appstorage:
+  ollama:

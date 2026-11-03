@@ -1,0 +1,9 @@
+node_modules
+dist
+storage
+*.pyc
+__pycache__
+.env
+.git
+backend/app/static
+sample_data

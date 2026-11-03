@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BusinessMind AI — Intelligent BI Platform</title>
+    <style>
+      :root { color-scheme: light; }
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        background: #f8fafc; color: #0f172a;
+        min-height: 100dvh; display: flex; align-items: center; justify-content: center;
+        padding: 24px;
+      }
+      .card {
+        max-width: 720px; width: 100%; background: #fff; border: 1px solid #e2e8f0;
+        border-radius: 24px; padding: 48px; box-shadow: 0 10px 30px -12px rgb(15 23 42 / .15);
+      }
+      .logo {
+        width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center;
+        justify-content: center; background: linear-gradient(135deg, #3b82f6, #22d3ee);
+        color: #fff; font-weight: 800; font-size: 22px; margin-bottom: 20px;
+      }
+      h1 { font-size: 28px; letter-spacing: -.02em; }
+      p.sub { color: #64748b; margin-top: 6px; line-height: 1.6; }
+      code, pre {
+        font-family: ui-monospace, monospace; background: #f1f5f9; border-radius: 8px;
+      }
+      code { padding: 2px 6px; font-size: 13px; }
+      pre { padding: 16px; margin-top: 16px; font-size: 14px; line-height: 1.7; overflow-x: auto; }
+      h2 { font-size: 15px; margin-top: 28px; color: #1d4ed8; }
+      ul { margin: 10px 0 0 20px; color: #334155; line-height: 1.9; font-size: 14.5px; }
+      .tag {
+        display: inline-block; background: #eff6ff; color: #1d4ed8; font-size: 12px;
+        font-weight: 700; padding: 4px 10px; border-radius: 999px; margin: 4px 4px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo">BM</div>
+      <h1>BusinessMind AI</h1>
+      <p class="sub">
+        Intelligent Business Intelligence Platform — full-stack application
+        (FastAPI + PostgreSQL + React). This repository is the deliverable;
+        run it with Docker to launch the complete app:
+      </p>
+      <pre>cp .env.example .env   # set JWT_SECRET &amp; DB_PASSWORD
+docker compose up --build
+# → open http://localhost:8000</pre>
+      <h2>What's inside</h2>
+      <ul>
+        <li>AI data analysis — KPIs, trends, anomalies, correlations (pandas)</li>
+        <li>Natural-language assistant with optional Ollama LLM narration</li>
+        <li>ML forecasting (scikit-learn) with 95% prediction intervals</li>
+        <li>Automated PDF business reports</li>
+        <li>JWT auth, RBAC, strict multi-tenant isolation</li>
+        <li>34 automated tests incl. security &amp; tenant-isolation suites</li>
+      </ul>
+      <h2>Stack</h2>
+      <span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">React 18</span>
+      <span class="tag">TypeScript</span><span class="tag">Tailwind</span><span class="tag">Recharts</span>
+      <span class="tag">scikit-learn</span><span class="tag">Ollama</span><span class="tag">Docker</span>
+    </div>
+  </body>
+</html>
