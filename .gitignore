@@ -6,3 +6,7 @@ __pycache__/
 storage/
 backend/app/static/
 .pytest_cache/
+
+.venv/
+venv/
+*.tsbuildinfo
